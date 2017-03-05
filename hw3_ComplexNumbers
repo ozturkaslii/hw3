@@ -1,0 +1,61 @@
+#include <iostream>
+#include <complex>
+
+using namespace std;
+
+
+typedef complex<double> dcomp;
+
+struct ComplexStruct {
+	double a;
+	double b;
+
+	ComplexStruct()
+	{
+		a = 0;
+		b = 0;
+	}
+
+	ComplexStruct(double x, double y)
+	{
+		a = x;
+		b = y;
+	}
+
+};
+
+
+ostream &operator << (ostream &out, ComplexStruct &cs) {
+
+	out << complex<double>(cs.a, cs.b);
+
+	return out;
+}
+
+istream &operator >> (istream &in, ComplexStruct &cs) {
+	cin >> cs.a >> cs.b;
+	return in;
+}
+void operator +=(ComplexStruct &cs1, ComplexStruct &cs2) {
+	dcomp(cs1.a, cs1.b) + dcomp(cs2.a, cs2.b);
+}
+
+int main() {
+
+	ComplexStruct cs1;
+	ComplexStruct cs2;
+
+	cout << "Enter your first complex expression's real and imaginary parts, with spaces between them: " << endl;
+	cin >> cs1;
+	cout << "Enter your second complex expression's real and imaginary parts, with spaces between them: " << endl;
+	cin >> cs2;
+
+
+	cout << dcomp(cs1.a, cs1.b) + dcomp(cs2.a, cs2.b) << endl;
+	cout << dcomp(cs1.a, cs1.b) - dcomp(cs2.a, cs2.b) << endl;
+	cout << dcomp(cs1.a, cs1.b) * dcomp(cs2.a, cs2.b) << endl;
+	cout << dcomp(cs1.a, cs1.b) / dcomp(cs2.a, cs2.b) << endl;
+
+	return 0;
+
+}
